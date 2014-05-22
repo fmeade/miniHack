@@ -20,18 +20,13 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "About", about_path %></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Hi</a></li>
-            <li><a href="#">Hello</a></li>
-            <li><a href="#">Hey</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Settings</a></li>
-          </ul>
-        </li>
-      </ul>
+        <% if user_signed_in? %>
+        <li><%= link_to "Account Settings", edit_user_registration_path %></li>
+          <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Sign in", new_user_session_path %></li>
+        <% end %>
+    </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
